@@ -18,3 +18,7 @@ The plan is to find assets or make the tokens and the grid. For coding, we’ll 
 
 Sketch/Illustration:
 [Connect 4.pdf](https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/files/14948191/Connect.4.pdf)
+
+UML Diagram:
+![UML diagram](https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/assets/96271963/04182647-1b41-458d-9da3-a4fd34ac7ae6)
+
