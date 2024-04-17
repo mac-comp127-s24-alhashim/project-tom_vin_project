@@ -1,7 +1,11 @@
 package Connect4;
 
+import java.awt.Color;
+
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsGroup;
+import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.events.*;
 
 public class GameBoard extends GraphicsGroup {
@@ -10,6 +14,12 @@ public class GameBoard extends GraphicsGroup {
     private int columns;
 
     public GameBoard(int rows, int columns) {
+        Ellipse ellipse = new Ellipse(0, 0, 500, 500);
+        ellipse.setFillColor(Color.BLACK);
+        this.add(ellipse);
+
+        
+        
         this.rows = rows;
         this.columns = columns;
         grid = new Token[rows][columns];
