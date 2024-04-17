@@ -24,8 +24,6 @@ public class GameBoard {
         return false; // Column is full
     }
 
-    public boolean checkWin(Token token
-    }
-testint testing
+    public boolean checkWin(Token token){ }
     // Add additional methods for isFull, isEmpty, checkWin, checkTie later.
 }
