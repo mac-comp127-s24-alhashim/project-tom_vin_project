@@ -53,6 +53,30 @@ public class GameBoard {
         }
         return false;
      }
-     
+     private boolean checkDiagonalWin(Token token) {
+        // downwards diagonal
+        for (int row = 0; row < rows - 3; row++) {
+            for (int col = 0; col < columns - 3; col++) {
+                if (grid[row][col] == token && 
+                    grid[row + 1][col + 1] == token &&
+                    grid[row + 2][col + 2] == token &&
+                    grid[row + 3][col + 3] == token) {
+                        return true; // downwards diagonal met
+            }
+        }
+     }
+     // upwards diagonal
+        for (int row = 3; row < rows; row++) {
+            for (int col = 0; col < columns - 3; col++) {
+                if (grid[row][col] == token &&
+                    grid[row - 1][col + 1] == token &&
+                    grid[row - 2][col + 2] == token &&
+                    grid[row - 3][col + 3] == token) {
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
 }
     // Add additional methods for isFull, isEmpty, checkWin, checkTie later
