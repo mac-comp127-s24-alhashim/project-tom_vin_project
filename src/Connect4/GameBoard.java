@@ -1,6 +1,10 @@
 package Connect4;
 
-public class GameBoard {
+import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsGroup;
+import edu.macalester.graphics.events.*;
+
+public class GameBoard extends GraphicsGroup {
     private Token[][] grid;
     private int rows;
     private int columns;
@@ -24,6 +28,6 @@ public class GameBoard {
         return false; // Column is full
     }
 
-    public boolean checkWin(Token token){ }
+    // public boolean checkWin(Token token){ }
     // Add additional methods for isFull, isEmpty, checkWin, checkTie later.
 }
