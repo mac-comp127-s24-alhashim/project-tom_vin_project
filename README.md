@@ -14,3 +14,10 @@ Actual Connect 4
 
 Rough implementation and responsibility plan (what needs to be accomplished, who will do what when):
 The plan is to find assets or make the tokens and the grid. For coding, we’ll need to map out the grid and have the program recognize when a player has won. There should be a play again button and a score that is kept every time a player has won. We’ll share the responsibilities equally.
+
+
+Sketch:
+https://vscode.dev/github/mac-comp127-s24-alhashim/project-tom_vin_project/blob/main/Sketch.png
+
+UML:
+https://vscode.dev/github/mac-comp127-s24-alhashim/project-tom_vin_project/blob/main/UML.png
