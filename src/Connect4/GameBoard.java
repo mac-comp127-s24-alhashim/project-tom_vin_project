@@ -112,9 +112,3 @@ public class GameBoard extends GraphicsGroup {
     }
 }
     // Add additional methods for isFull, isEmpty, checkWin, checkTie later
-
-    // public boolean checkWin(Token token){ }
-    // Add additional methods for isFull, isEmpty, checkWin, checkTie later.
-
-    // public boolean checkWin(Token token){ }
-    // Add additional methods for isFull, isEmpty, checkWin, checkTie later.
