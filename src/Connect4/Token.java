@@ -17,18 +17,26 @@ public class Token extends GraphicsGroup {
 
     public Token(String color) {
 
-        Ellipse token = new Ellipse(0, 0, 30, 30);
+        Ellipse token = new Ellipse(0, 0, 60, 60);
         
         if (color == "R"){
             token.setFillColor(Color.RED);
         }
-
         else if (color == "Y"){
             token.setFillColor(Color.YELLOW);
         }
         
         this.add(token);
-        // this.color = color;
+    }
+
+    public void setColor(String color) {
+        // maybe for player to set the token color / p1 = "R", p2 = "Y"
+        if (color == "R"){
+            token.setFillColor(Color.RED);
+        }
+        else if (color == "Y"){
+            token.setFillColor(Color.YELLOW);
+        }
     }
 
     public String getColor() {
