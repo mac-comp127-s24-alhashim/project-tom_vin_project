@@ -12,10 +12,13 @@ public class GameBoard extends GraphicsGroup {
     private Token[][] grid;
     private int rows;
     private int columns;
+    private int BOARD_WIDTH = 700;
+    private int BOARD_HEIGHT = 600;
+
 
     public GameBoard(int rows, int columns) {
 
-        Rectangle rect = new Rectangle(50, 300, 700, 400);
+        Rectangle rect = new Rectangle(50, 100, BOARD_WIDTH, BOARD_HEIGHT);
         rect.setFillColor(Color.blue);
         this.add(rect);
 

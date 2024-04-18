@@ -17,7 +17,7 @@ public class Token extends GraphicsGroup {
 
     public Token(String color) {
 
-        Ellipse token = new Ellipse(0, 0, 20, 20);
+        Ellipse token = new Ellipse(0, 0, 30, 30);
         
         if (color == "R"){
             token.setFillColor(Color.RED);
