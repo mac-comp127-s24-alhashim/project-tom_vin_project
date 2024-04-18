@@ -78,5 +78,14 @@ public class GameBoard {
         }
         return false;
     }
+    // check to see if board is full
+    public boolean isFull() {
+        for (int col = 0; col < columns; col++) {
+            if (grid[0][col] == null) {
+                return false; // if empty space in top row, not full
+            }
+        }
+        return true; // no empty spaces, board full
+    }
 }
     // Add additional methods for isFull, isEmpty, checkWin, checkTie later

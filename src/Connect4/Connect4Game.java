@@ -19,5 +19,6 @@ public class Connect4Game {
         // Game loop implementation will go here.
     }
 
+    public boolean makeMove(int)
     // Methods for makeMove, changeTurn, checkWin, checkTie will be implemented here.
 }
