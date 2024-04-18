@@ -1,5 +1,7 @@
 package Connect4;
 
+import java.awt.Color;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.events.*;
 
@@ -11,6 +13,7 @@ public class Connect4Game {
     private boolean gameOver;
     private Player currentPlayer;
     private CanvasWindow canvas;
+    private Token token1;
 
     public static void main(String[] args) {
         new Connect4Game();
@@ -24,6 +27,9 @@ public class Connect4Game {
         
         gameBoard = new GameBoard(7, 7);
         canvas.add(gameBoard);
+
+        token1 = new Token("Y");
+        canvas.add(token1);
 
         currentPlayer = p1; // Player 1 starts
         gameOver = false;

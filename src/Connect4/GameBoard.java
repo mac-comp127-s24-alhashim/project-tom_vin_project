@@ -14,12 +14,11 @@ public class GameBoard extends GraphicsGroup {
     private int columns;
 
     public GameBoard(int rows, int columns) {
-        Ellipse ellipse = new Ellipse(0, 0, 500, 500);
-        ellipse.setFillColor(Color.BLACK);
-        this.add(ellipse);
 
-        
-        
+        Rectangle rect = new Rectangle(50, 300, 700, 400);
+        rect.setFillColor(Color.blue);
+        this.add(rect);
+
         this.rows = rows;
         this.columns = columns;
         grid = new Token[rows][columns];
