@@ -19,6 +19,11 @@ public class Token extends GraphicsGroup {
 
         Ellipse token = new Ellipse(0, 0, 60, 60);
         
+        System.out.println(Connect4Game.tokens%2);
+        if (Connect4Game.tokens %2 == 0){
+            color = "R";
+        } else color ="Y";
+
         if (color == "R"){
             token.setFillColor(Color.RED);
         }

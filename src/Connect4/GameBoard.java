@@ -40,7 +40,6 @@ public class GameBoard extends GraphicsGroup {
                 Ellipse hole = new Ellipse(x, y, 60, 60); // sets the size of the holes
                 hole.setFillColor(Color.WHITE);
                 this.add(hole);
-                System.out.println(hole.getPosition());
             }
         }
         // Ellipse gridEllipse = new Ellipse(0, 0, 100, 100);

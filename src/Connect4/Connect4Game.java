@@ -13,13 +13,14 @@ public class Connect4Game {
     private boolean gameOver = false;
     private Player currentPlayer;
     private CanvasWindow canvas;
-    private Token token1;
 
     private Token[][] grid;
     private int ROWS = 6;
     private int COLUMNS = 7;
     private int BOARD_WIDTH = 700;
     private int BOARD_HEIGHT = 600;
+    public static int tokens; // I think we need to change the type to Token or sth to be able to do tokens.size()
+    private Token[][] tokenArray;
 
     public static void main(String[] args) {
         new Connect4Game();
@@ -34,11 +35,6 @@ public class Connect4Game {
         gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
-        token1 = new Token("Y");
-        token1.setPosition(70,620);
-
-        canvas.add(token1);
-
         currentPlayer = p1; // Player 1 starts
 
         dropToken();
@@ -49,12 +45,16 @@ public class Connect4Game {
     }
 
     public void dropToken() {
+        // need to change row and column when we have proper storage
+        int row = 0;
+        int column = 0;
         canvas.onClick(event -> {
             for (int i = 70; i<=670; i+=100){
                 if (event.getPosition().getX() >= i && event.getPosition().getX() <= i+100){
                     Token token = new Token("Y");
                     token.setPosition(i, 620);
                     canvas.add(token);
+                    tokens+=1;
                 }
             }
         });
