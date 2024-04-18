@@ -25,7 +25,7 @@ public class Connect4Game {
         
         canvas = new CanvasWindow("Connect 4", 800, 800);
         
-        gameBoard = new GameBoard(7, 7);
+        gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
         token1 = new Token("Y");

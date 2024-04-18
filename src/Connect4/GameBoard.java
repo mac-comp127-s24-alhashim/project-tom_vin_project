@@ -10,21 +10,28 @@ import edu.macalester.graphics.events.*;
 
 public class GameBoard extends GraphicsGroup {
     private Token[][] grid;
-    private int rows;
-    private int columns;
+    private int rows = 6;
+    private int columns = 7;
     private int BOARD_WIDTH = 700;
     private int BOARD_HEIGHT = 600;
 
+    private int cellWidth = BOARD_WIDTH / columns;
+    private int cellSize = BOARD_HEIGHT / rows;
 
-    public GameBoard(int rows, int columns) {
+
+    public GameBoard() {
 
         Rectangle rect = new Rectangle(50, 100, BOARD_WIDTH, BOARD_HEIGHT);
         rect.setFillColor(Color.blue);
         this.add(rect);
 
-        this.rows = rows;
-        this.columns = columns;
         grid = new Token[rows][columns];
+
+    }
+
+    private void drawGrid(){
+        Ellipse gridEllipse = new Ellipse(0,0,100,100);
+        gridEllipse.setFillColor(Color.WHITE);
     }
 
     public boolean playMove(int column, Token token) {
