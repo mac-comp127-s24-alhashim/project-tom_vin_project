@@ -33,8 +33,11 @@ public class Connect4Game {
         return false;
     }
 
-    private void changeTurn() {
-        
+
+
+
+    //change turn
+    private void changeTurn() { 
     }
     // Methods for makeMove, changeTurn, checkWin, checkTie will be implemented here.
 }
