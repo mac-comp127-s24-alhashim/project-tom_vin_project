@@ -16,9 +16,9 @@ public class GameBoard extends GraphicsGroup {
     private int BOARD_HEIGHT = 600;
 
     private int cellWidth = BOARD_WIDTH / columns;
-    private int cellSize = BOARD_HEIGHT / rows;
+    private int cellHeight = BOARD_HEIGHT / rows;
 
-
+    // draws the gameboard
     public GameBoard() {
 
         Rectangle rect = new Rectangle(50, 100, BOARD_WIDTH, BOARD_HEIGHT);
@@ -26,10 +26,21 @@ public class GameBoard extends GraphicsGroup {
         this.add(rect);
 
         grid = new Token[rows][columns];
+        drawGrid();
 
     }
-
+    // draws the holes in the grid
     private void drawGrid(){
+        for (int row = 0; row < rows; row++) { // loops through each row and column until row/column is less than rows/columns
+            for (int col = 0; col <columns; col++) {
+                double x = 50 + col * cellWidth + cellWidth / 2.0 - 30; // sets placement of the grid
+                double y = 100 + row * cellHeight + cellHeight / 2.0 - 30;
+                Ellipse hole = new Ellipse(x, y, 60, 60); // sets the size of the holes
+                hole.setFillColor(Color.WHITE);
+                this.add(hole);
+
+            }
+        }
         Ellipse gridEllipse = new Ellipse(0,0,100,100);
         gridEllipse.setFillColor(Color.WHITE);
     }
