@@ -19,6 +19,22 @@ public class Connect4Game {
         // Game loop implementation will go here.
     }
 
-    public boolean makeMove(int)
+    public boolean makeMove(int column) {
+        if (!gameOver && gameBoard.playMove(column, currentPlayer.getToken())) {
+            if (gameBoard.checkWin(currentPlayer.getToken())) { // if move successful, check for win or tie
+                gameOver = true;
+            } else if (gameBoard.isFull()) {
+                gameOver = true;
+            } else {
+                changeTurn();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void changeTurn() {
+        
+    }
     // Methods for makeMove, changeTurn, checkWin, checkTie will be implemented here.
 }
