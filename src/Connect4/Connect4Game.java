@@ -15,10 +15,10 @@ public class Connect4Game {
     private CanvasWindow canvas;
 
     private Token[][] grid;
-    private int ROWS = 6;
-    private int COLUMNS = 7;
-    private int BOARD_WIDTH = 700;
-    private int BOARD_HEIGHT = 600;
+    private final int ROWS = 6;
+    private final int COLUMNS = 7;
+    private final int BOARD_WIDTH = 700;
+    private final int BOARD_HEIGHT = 600;
     public static int tokens; // I think we need to change the type to Token or sth to be able to do tokens.size()
     private Token[][] tokenArray;
 
@@ -34,6 +34,8 @@ public class Connect4Game {
         
         gameBoard = new GameBoard();
         canvas.add(gameBoard);
+
+        grid = new Token[ROWS][COLUMNS];
 
         currentPlayer = p1; // Player 1 starts
 
@@ -51,10 +53,22 @@ public class Connect4Game {
         canvas.onClick(event -> {
             for (int i = 70; i<=670; i+=100){
                 if (event.getPosition().getX() >= i && event.getPosition().getX() <= i+100){
-                    Token token = new Token("Y");
-                    token.setPosition(i, 620);
+                    int c = i/100; // column
+                    int r = 5; // row
+                    int yCounter = 620;
+                    
+                    Token token = new Token("");
+
+                    while (grid[r][c]!=null){
+                        r-=1;
+                        yCounter-=100;
+                    }
+                    
+                    token.setPosition(i, yCounter);
                     canvas.add(token);
-                    tokens+=1;
+                    grid[r][c] = token;
+
+                    tokens+=1; // delete this later, for now this is what switches the colors
                 }
             }
         });

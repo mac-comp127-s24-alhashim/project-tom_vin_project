@@ -9,11 +9,12 @@ import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.events.*;
 
 public class GameBoard extends GraphicsGroup {
-    private Token[][] grid;
+    public Token[][] grid;
+
     private int ROWS = 6;
-    private int COLUMNS = 7;
-    private int BOARD_WIDTH = 700;
-    private int BOARD_HEIGHT = 600;
+    private final int COLUMNS = 7;
+    private final int BOARD_WIDTH = 700;
+    private final int BOARD_HEIGHT = 600;
 
     private int cellWidth = BOARD_WIDTH / COLUMNS;
     private int cellHeight = BOARD_HEIGHT / ROWS;
@@ -26,6 +27,7 @@ public class GameBoard extends GraphicsGroup {
         this.add(rect);
 
         grid = new Token[ROWS][COLUMNS];
+        
         drawGrid();
 
     }
@@ -40,6 +42,9 @@ public class GameBoard extends GraphicsGroup {
                 Ellipse hole = new Ellipse(x, y, 60, 60); // sets the size of the holes
                 hole.setFillColor(Color.WHITE);
                 this.add(hole);
+                // grid[row][col] = null;
+
+                System.out.println(hole.getPosition());
             }
         }
         // Ellipse gridEllipse = new Ellipse(0, 0, 100, 100);
