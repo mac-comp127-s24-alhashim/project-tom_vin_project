@@ -62,9 +62,6 @@ public class Connect4Game {
     }
 
     public void dropToken() {
-        // need to change row and column when we have proper storage
-        int row = 0;
-        int column = 0;
         canvas.onClick(event -> {
             for (int i = 70; i<=670; i+=100){
                 if (event.getPosition().getX() >= i && event.getPosition().getX() <= i+100){
@@ -74,16 +71,18 @@ public class Connect4Game {
                     
                     Token token = new Token("");
 
-                    while (grid[r][c]!=null){
+                    while (grid[r][c]!=null && r>0){
                         r-=1;
                         yCounter-=100;
                     }
                     
-                    token.setPosition(i, yCounter);
-                    canvas.add(token);
-                    grid[r][c] = token;
+                    if (grid[r][c] == null) {
+                        token.setPosition(i, yCounter);
+                        canvas.add(token);
+                        grid[r][c] = token;
 
-                    tokens+=1; // delete this later, for now this is what switches the colors
+                        tokens+=1; // delete this later, for now this is what switches the colors
+                    }
                 }
             }
         });
