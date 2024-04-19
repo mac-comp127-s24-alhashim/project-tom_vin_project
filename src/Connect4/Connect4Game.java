@@ -3,6 +3,8 @@ package Connect4;
 import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.events.*;
 
 
@@ -20,7 +22,7 @@ public class Connect4Game {
     private final int BOARD_WIDTH = 700;
     private final int BOARD_HEIGHT = 600;
     public static int tokens; // I think we need to change the type to Token or sth to be able to do tokens.size()
-    private Token[][] tokenArray;
+    private GraphicsText turnText;
 
     public static void main(String[] args) {
         new Connect4Game();
@@ -38,6 +40,19 @@ public class Connect4Game {
         grid = new Token[ROWS][COLUMNS];
 
         currentPlayer = p1; // Player 1 starts
+
+        // turnText = new GraphicsText("Player 1's Turn", 10, 30);
+        // turnText.setFont(FontStyle.BOLD,20);
+
+        // if (tokens %2 == 0){
+        //     canvas.add(turnText);
+        // }
+
+        // else {
+        //     canvas.remove(turnText);
+        //     turnText.setText("Player 2's Turn");
+        //     canvas.add(turnText);
+        // }
 
         dropToken();
     }
