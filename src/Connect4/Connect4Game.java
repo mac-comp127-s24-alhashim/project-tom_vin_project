@@ -17,6 +17,8 @@ public class Connect4Game {
     private CanvasWindow canvas;
 
     private Token[][] grid;
+    private Token [] red;
+
     private final int ROWS = 6;
     private final int COLUMNS = 7;
     private final int BOARD_WIDTH = 700;

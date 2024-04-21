@@ -2,6 +2,7 @@ package Connect4;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Paint;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
@@ -19,7 +20,6 @@ public class Token extends GraphicsGroup {
 
         Ellipse token = new Ellipse(0, 0, 60, 60);
         
-        System.out.println(Connect4Game.tokens%2);
         if (Connect4Game.tokens %2 == 0){
             color = "R";
         } else color ="Y";
@@ -29,6 +29,7 @@ public class Token extends GraphicsGroup {
         }
         else if (color == "Y"){
             token.setFillColor(Color.YELLOW);
+            System.out.println(token.getFillColor());
         }
         
         this.add(token);
@@ -44,7 +45,7 @@ public class Token extends GraphicsGroup {
         }
     }
 
-    public String getColor() {
-        return color;
+    public Paint getColor() {
+        return token.getFillColor();
     }
 }
