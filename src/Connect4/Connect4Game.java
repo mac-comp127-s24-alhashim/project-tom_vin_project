@@ -6,6 +6,7 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.events.*;
+import edu.macalester.graphics.ui.Button;
 
 
 public class Connect4Game {
@@ -42,16 +43,14 @@ public class Connect4Game {
         turnText.setFontStyle(FontStyle.BOLD);
         canvas.add(turnText);
         
+        Button testButton = new Button("Switch Player");
+        testButton.onClick(() -> switchPlayer());
+        testButton.setPosition(125, 10);
+        canvas.add(testButton);
+
         dropToken();
     }
-
-    public void switchPlayer() {
-        currentPlayer = (currentPlayer == p1) ? p2 : p1;
-        System.out.println("Switched to: " + currentPlayer.getName()); 
-        turnText.setText(currentPlayer.getName() + "'s Turn");
-    }
     
-
 
     public void dropToken() {
         canvas.onClick(event -> {
@@ -74,28 +73,39 @@ public class Connect4Game {
     
 
                         // this one correctly switches player turns but doesnt check win
-                        // if (!gameOver) {
-                        //     switchPlayer();
-                        // } else if (checkWin()) {
-                        //     endGame(currentPlayer.getName() + " wins!");
-                        // } else if (checkTie()) {
-                        //     endGame("It's a tie!");
-                        // }
+                        if (checkWin()) {
+                            endGame(currentPlayer.getName() + " wins!");
+                            System.out.println(currentPlayer.getName() + " wins!");
+                        } else if (checkTie()) {
+                            endGame("It's a tie!");
+                            System.out.println("It's a tie!");
+                        } else {
+                            switchPlayer();
+                            System.out.println("Switched to: " + currentPlayer.getName());
+                        
 
 
                         // this one correctly gets the check win but doesnt correctly change turns
-                        if (checkWin()) {
-                            endGame(currentPlayer.getName() + " wins!");
-                            return;
-                        } else if (checkTie()) {
-                            endGame("It's a tie!");
+                        // if (checkWin()) {
+                        //     endGame(currentPlayer.getName() + " wins!");
+                        // } else if (checkTie()) {
+                        //     endGame("It's a tie!");
+                        // } else {
+                        // switchPlayer();
                         }
-                        switchPlayer();
                     }
                 }
             }
         });
     }
+
+    
+    public void switchPlayer() {
+        currentPlayer = (currentPlayer == p1) ? p2 : p1;
+        turnText.setText(currentPlayer.getName() + "'s Turn");
+        canvas.draw(); 
+    }
+    
     
     
 
@@ -171,5 +181,7 @@ public class Connect4Game {
     public void endGame(String message) {
         gameOver = true;
         turnText.setText(message);
+        System.out.println("Game ended: " + message);
     }
+    
 }
