@@ -71,17 +71,12 @@ public class Connect4Game {
                         canvas.add(token);
                         grid[r][c] = token;
     
-
-                        // this one correctly switches player turns but doesnt check win
                         if (checkWin()) {
                             endGame(currentPlayer.getName() + " wins!");
-                            System.out.println(currentPlayer.getName() + " wins!");
                         } else if (checkTie()) {
                             endGame("It's a tie!");
-                            System.out.println("It's a tie!");
                         } else {
                             switchPlayer();
-                            System.out.println("Switched to: " + currentPlayer.getName());
                         
 
 
