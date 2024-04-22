@@ -19,8 +19,6 @@ public class Connect4Game {
     private Token[][] grid;
     private final int ROWS = 6;
     private final int COLUMNS = 7;
-    private final int BOARD_WIDTH = 700;
-    private final int BOARD_HEIGHT = 600;
     public static int tokens; // I think we need to change the type to Token or sth to be able to do tokens.size()
     private GraphicsText turnText;
 
@@ -39,120 +37,75 @@ public class Connect4Game {
 
         grid = new Token[ROWS][COLUMNS];
 
-        currentPlayer = p1; // Player 1 starts
-
-        // turnText = new GraphicsText("Player 1's Turn", 10, 30);
-        // turnText.setFont(FontStyle.BOLD,20);
-
-        // if (tokens %2 == 0){
-        //     canvas.add(turnText);
-        // }
-
-        // else {
-        //     canvas.remove(turnText);
-        //     turnText.setText("Player 2's Turn");
-        //     canvas.add(turnText);
-        // }
-
+        currentPlayer = p1; 
+        turnText = new GraphicsText(currentPlayer.getName() + " 's Turn", 10, 30);
+        turnText.setFontStyle(FontStyle.BOLD);
+        canvas.add(turnText);
+        
         dropToken();
     }
 
-    public void startGame() {        
-        // Game loop implementation will go here.
+    public void switchPlayer() {
+        currentPlayer = (currentPlayer == p1) ? p2 : p1;
+        System.out.println("Switched to: " + currentPlayer.getName()); 
+        turnText.setText(currentPlayer.getName() + "'s Turn");
     }
+    
+
 
     public void dropToken() {
         canvas.onClick(event -> {
-            for (int i = 70; i<=670; i+=100){
-                if (event.getPosition().getX() >= i && event.getPosition().getX() <= i+100){
-                    int c = i/100; // column
-                    int r = 5; // row
-                    int yCounter = 620;
-                    
-                    Token token = new Token("");
-
-                    while (grid[r][c]!=null && r>0){
-                        r-=1;
-                        yCounter-=100;
+            if (gameOver) return; 
+    
+            for (int i = 70; i <= 670; i += 100) {
+                if (event.getPosition().getX() >= i && event.getPosition().getX() < i + 100) {
+                    int c = (int) ((event.getPosition().getX() - 50) / 100);
+                    int r = ROWS - 1;
+    
+                    while (r >= 0 && grid[r][c] != null) {
+                        r--;
                     }
-                    
-                    if (grid[r][c] == null) {
-                        token.setPosition(i, yCounter);
+    
+                    if (r >= 0) {
+                        Token token = new Token(currentPlayer.getToken().getColor());
+                        token.setTokenPosition(50 + c * 100 + 20, 100 + r * 100 + 20);
                         canvas.add(token);
                         grid[r][c] = token;
+    
 
-                        tokens+=1; // delete this later, for now this is what switches the colors
+                        // this one correctly switches player turns but doesnt check win
+                        // if (!gameOver) {
+                        //     switchPlayer();
+                        // } else if (checkWin()) {
+                        //     endGame(currentPlayer.getName() + " wins!");
+                        // } else if (checkTie()) {
+                        //     endGame("It's a tie!");
+                        // }
+
+
+                        // this one correctly gets the check win but doesnt correctly change turns
+                        if (checkWin()) {
+                            endGame(currentPlayer.getName() + " wins!");
+                            return;
+                        } else if (checkTie()) {
+                            endGame("It's a tie!");
+                        }
+                        switchPlayer();
                     }
                 }
             }
         });
     }
+    
+    
 
-    // Methods for makeMove, changeTurn, checkWin, checkTie will be implemented here.
-
-
-    public boolean playMove(int column, Token token) {
-        if (column < 0 || column >= COLUMNS) {
-            return false; // Invalid column
-        }
-        for (int row = ROWS - 1; row >= 0; row--) {
-            if (grid[row][column] == null) {
-                grid[row][column] = token;
-                return true;
-            }
-        }
-        return false; // Column is full
-    }
-
-    public boolean checkWin(Token token) {
-        return checkHorizontalWin(token) || checkVerticalWin(token) || checkDiagonalWin(token);
-    }
-
-    // Check for horizontal win
-    private boolean checkHorizontalWin(Token token) {
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLUMNS - 3; col++) {
-                if (grid[row][col] == token && grid[row][col + 1] == token &&
-                    grid[row][col + 2] == token && grid[row][col + 3] == token) {
-                    return true; // horizontal win met
-                }
-            }
-        }
-        return false;
-    }
-
-    // Check for vertical win
-    private boolean checkVerticalWin(Token token) {
-        for (int col = 0; col < col; col++) {
-            for (int row = 0; row < row - 3; row++) {
-                if (grid[row][col] == token && grid[row + 1][col] == token &&
-                    grid[row + 2][col] == token && grid[row + 3][col] == token) {
-                    return true; // vertical win met
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean checkDiagonalWin(Token token) {
-        // downwards diagonal
-        for (int row = 0; row < ROWS - 3; row++) {
-            for (int col = 0; col < COLUMNS - 3; col++) {
-                if (grid[row][col] == token &&
-                    grid[row + 1][col + 1] == token &&
-                    grid[row + 2][col + 2] == token &&
-                    grid[row + 3][col + 3] == token) {
-                    return true; // downwards diagonal met
-                }
-            }
-        }
-        // upwards diagonal
-        for (int row = 3; row < ROWS; row++) {
-            for (int col = 0; col < COLUMNS - 3; col++) {
-                if (grid[row][col] == token &&
-                    grid[row - 1][col + 1] == token &&
-                    grid[row - 2][col + 2] == token &&
-                    grid[row - 3][col + 3] == token) {
+    private boolean checkVerticalWin() {
+        for (int col = 0; col < COLUMNS; col++) {
+            for (int row = 0; row < ROWS - 3; row++) {
+                if (grid[row][col] != null &&
+                    grid[row][col].getColor().equals(grid[row + 1][col].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row + 2][col].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row + 3][col].getColor())) {
                     return true;
                 }
             }
@@ -160,14 +113,63 @@ public class Connect4Game {
         return false;
     }
 
-    // check to see if board is full
-    public boolean isFull() {
-        for (int col = 0; col < COLUMNS; col++) {
-            if (grid[0][col] == null) {
-                return false; // if empty space in top row, not full
+    private boolean checkHorizontalWin() {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS - 3; col++) {
+                if (grid[row][col] != null &&
+                    grid[row][col].getColor().equals(grid[row][col + 1].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row][col + 2].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row][col + 3].getColor())) {
+                    return true;
+                }
             }
         }
-        return true; // no empty spaces, board full
+        return false;
+    }
+
+    private boolean checkDiagonalWin() {
+        // Check for downwrads diagonal win
+        for (int row = 0; row < ROWS - 3; row++) {
+            for (int col = 0; col < COLUMNS - 3; col++) {
+                if (grid[row][col] != null &&
+                    grid[row][col].getColor().equals(grid[row + 1][col + 1].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row + 2][col + 2].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row + 3][col + 3].getColor())) {
+                    return true;
+                }
+            }
+        }
+        // Check for upwards diagonal win
+        for (int row = 3; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS - 3; col++) {
+                if (grid[row][col] != null &&
+                    grid[row][col].getColor().equals(grid[row - 1][col + 1].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row - 2][col + 2].getColor()) &&
+                    grid[row][col].getColor().equals(grid[row - 3][col + 3].getColor())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkTie() {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
+                if (grid[row][col] == null) {
+                    return false; 
+                }
+            }
+        }
+        return true; 
+    }
+
+    private boolean checkWin() {
+        return checkVerticalWin() || checkHorizontalWin() || checkDiagonalWin();
+    }
+
+    public void endGame(String message) {
+        gameOver = true;
+        turnText.setText(message);
     }
 }
-// Add additional methods for isFull, isEmpty, checkWin, checkTie later

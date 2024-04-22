@@ -2,16 +2,18 @@ package Connect4;
 
 public class Player {
     private String name;
-    private Token token;
+    private Token tokenTest; 
 
     public Player(String name, Token token) {
         this.name = name;
-        this.token = token;
+        this.tokenTest = token; 
     }
+
     public String getName() {
         return name;
     }
+
     public Token getToken() {
-        return token;
+        return new Token(tokenTest.getColor());
     }
 }
