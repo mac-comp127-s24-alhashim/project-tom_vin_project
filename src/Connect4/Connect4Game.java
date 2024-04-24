@@ -15,6 +15,8 @@ public class Connect4Game {
     private GameBoard gameBoard;
 
     private Token[][] grid;
+    private Token [] red;
+
     private final int ROWS = 6;
     private final int COLUMNS = 7;
     private GraphicsText turnText;
