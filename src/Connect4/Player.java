@@ -2,11 +2,11 @@ package Connect4;
 
 public class Player {
     private String name;
-    private Token tokenTest; 
+    private Token token; 
 
     public Player(String name, Token token) {
         this.name = name;
-        this.tokenTest = token; 
+        this.token = token; 
     }
 
     public String getName() {
@@ -14,6 +14,6 @@ public class Player {
     }
 
     public Token getToken() {
-        return new Token(tokenTest.getColor());
+        return new Token(token.getColor());
     }
 }
