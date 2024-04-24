@@ -3,8 +3,6 @@ package Connect4;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
-import edu.macalester.graphics.events.MouseButtonEvent;
-import edu.macalester.graphics.ui.Button;
 
 public class Connect4Game {
     private Player p1;
@@ -12,11 +10,8 @@ public class Connect4Game {
     private boolean gameOver = false;
     private Player currentPlayer;
     private CanvasWindow canvas;
-    private GameBoard gameBoard;
 
     private Token[][] grid;
-    private Token [] red;
-
     private final int ROWS = 6;
     private final int COLUMNS = 7;
     private GraphicsText turnText;
@@ -41,7 +36,6 @@ public class Connect4Game {
 
         setupGame();
     }
-
     
     private void setupGame() {
         canvas.onClick(event -> {
@@ -132,7 +126,6 @@ public class Connect4Game {
             }
         }
         // Upward diagonal (/ direction)
-
         for (int row = 3; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS - 3; col++) {
                 if (grid[row][col] != null && grid[row - 1][col + 1] != null && grid[row - 2][col + 2] != null && grid[row - 3][col + 3] != null &&
