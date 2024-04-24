@@ -195,7 +195,12 @@ public class Connect4Game {
         turnText.setText(currentPlayer.getName() + "'s Turn");
     }
 
-    
+    public void undo(){
+        // few things we need to do for this: button
+        // remove token (now that's instance var we can, it's just the one that's still selected)
+        // update grid[][] back
+        // change to back to the other player
+    }
 
     public void endGame(String message) {
         gameOver = true;
