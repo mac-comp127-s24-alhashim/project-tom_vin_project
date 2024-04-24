@@ -3,6 +3,7 @@ package Connect4;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.ui.Button;
 
 public class Connect4Game {
     private Player p1;
@@ -22,11 +23,29 @@ public class Connect4Game {
     }
 
     public Connect4Game() {
+        canvas = new CanvasWindow("Connect 4", 800, 800);
+        setupStartScreen();
+    }
+
+    private void setupStartScreen() {
+        GraphicsText titleText = new GraphicsText("Connect 4", 275, 350);
+        titleText.setFontSize(50);
+        titleText.setFontStyle(FontStyle.BOLD);
+        canvas.add(titleText);
+
+        Button playButton = new Button("Play Now!");
+        playButton.setPosition(350, 375);
+        playButton.onClick(() -> startGame());
+        canvas.add(playButton);
+    }
+
+    private void startGame() {
+        canvas.removeAll();
+
         p1 = new Player("Player 1", new Token("R"));
         p2 = new Player("Player 2", new Token("Y"));
         
         canvas = new CanvasWindow("Connect 4", 800, 800);
-
         GameBoard gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
