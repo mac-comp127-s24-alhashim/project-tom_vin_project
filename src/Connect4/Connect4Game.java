@@ -83,10 +83,9 @@ public class Connect4Game {
             token = new Token(currentPlayer.getToken().getColor());
             grid[row][column] = token;
             canvas.add(token);
-            // token.setTokenPosition(70 + column * 100, 100 + row * 100 + 20);
-            // grid[row][column] = token;
 
-            // token.setPosition(70 + column * 100, 120 + row * 100);
+            // ToDo: get the token behind the board
+
             token.setPosition(70 + column * 100, 20);
             
             while (token.getY()<120 + row * 100){
@@ -200,6 +199,15 @@ public class Connect4Game {
         // remove token (now that's instance var we can, it's just the one that's still selected)
         // update grid[][] back
         // change to back to the other player
+    }
+
+    public void restart(){
+        // code for restart game
+        // need a button too
+    }
+
+    public void exitGame(){
+        // code for exiting game before it's finished
     }
 
     public void endGame(String message) {
