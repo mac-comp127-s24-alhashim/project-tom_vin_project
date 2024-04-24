@@ -12,6 +12,7 @@ public class Connect4Game {
     private CanvasWindow canvas;
 
     private Token[][] grid;
+    private Token token;
     private final int ROWS = 6;
     private final int COLUMNS = 7;
     private GraphicsText turnText;
@@ -25,6 +26,7 @@ public class Connect4Game {
         p2 = new Player("Player 2", new Token("Y"));
         
         canvas = new CanvasWindow("Connect 4", 800, 800);
+
         GameBoard gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
@@ -34,10 +36,6 @@ public class Connect4Game {
         turnText.setFontStyle(FontStyle.BOLD);
         canvas.add(turnText);
 
-        setupGame();
-    }
-    
-    private void setupGame() {
         canvas.onClick(event -> {
             if (gameOver) return;
             int columnClicked = getColumnFromX(event.getPosition().getX());
@@ -45,6 +43,12 @@ public class Connect4Game {
                 dropToken(columnClicked);
             }
         });
+
+        // setupGame();
+    }
+    
+    private void setupGame() {
+        // should be in the constructor
     }
 
     private int getColumnFromX(double x) {
@@ -57,10 +61,22 @@ public class Connect4Game {
     private void dropToken(int column) {
         int row = findEmptyRow(column);
         if (row != -1) {
-            Token token = new Token(currentPlayer.getToken().getColor());
-            token.setTokenPosition(50 + column * 100 + 20, 100 + row * 100 + 20);
-            canvas.add(token);
+            token = new Token(currentPlayer.getToken().getColor());
             grid[row][column] = token;
+            canvas.add(token);
+            // token.setTokenPosition(70 + column * 100, 100 + row * 100 + 20);
+            // grid[row][column] = token;
+
+            // token.setPosition(70 + column * 100, 120 + row * 100);
+            token.setPosition(70 + column * 100, 20);
+            
+            while (token.getY()<120 + row * 100){
+                // token.
+                token.moveBy(0, 10);
+                canvas.pause(1);
+                canvas.draw();
+            }
+            
 
             if (checkWin()) {
                 endGame(currentPlayer.getName() + " wins!");
@@ -159,6 +175,8 @@ public class Connect4Game {
         currentPlayer = (currentPlayer == p1) ? p2 : p1;
         turnText.setText(currentPlayer.getName() + "'s Turn");
     }
+
+    
 
     public void endGame(String message) {
         gameOver = true;
