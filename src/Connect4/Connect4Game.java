@@ -19,7 +19,7 @@ public class Connect4Game {
     private final int ROWS = 6;
     private final int COLUMNS = 7;
     
-    private static int lastR; private static int lastC; // to keep track for 2d array undo 
+    private static int lastR; private static int lastC; // lastR = row of last token, lastC = column of last token;
     private static Boolean buttonClicked = false;
     
     private GraphicsText turnText;
@@ -140,6 +140,24 @@ public class Connect4Game {
         }
         return false;
     }
+
+    // // updated checkWin, hopefully faster
+    // private boolean checkVerticalWin() {
+    //     int vCount = 0;  // Count consecutive tokens of the same color
+    
+    //     for (int row = 0; row < ROWS; row++) {
+    //         if (grid[row][lastC] != null && grid[row][lastC].getColor().equals(token.getColor())) {
+    //             vCount++;
+    //             if (vCount == 4) {
+    //                 return true; 
+    //             }
+    //         } else {
+    //             vCount = 0; 
+    //         }
+    //     }
+    
+    //     return false;
+    // }
     
 
     private boolean checkHorizontalWin() {
@@ -156,7 +174,22 @@ public class Connect4Game {
         }
         return false;
     }
+
+    // private boolean checkHorizontalWin() {
+    //     int hCount = 0;  // Count consecutive tokens of the same color
     
+    //     for (int col = 0; col < COLUMNS; col++) {
+    //         if (grid[lastR][col] != null && grid[lastR][col].getColor().equals(token.getColor())) {
+    //             hCount++;
+    //             if (hCount == 4) {
+    //                 return true;
+    //             }
+    //         } else {
+    //             hCount = 0;
+    //         }
+    //     }
+    //     return false;
+    // }
 
     private boolean checkDiagonalWin() {
         // Downward diagonal (\ direction)
@@ -237,5 +270,13 @@ public class Connect4Game {
         turnText.setText(message);
         turnToken.setPosition(120,15);
         System.out.println("Game ended: " + message);
+
+        Button restartButton = new Button("Restart?");
+        restartButton.setPosition(5, 40);
+        canvas.add(restartButton);
+        restartButton.onClick(() -> {
+            canvas.closeWindow();
+            new Connect4Game();
+        });
     }
 }
