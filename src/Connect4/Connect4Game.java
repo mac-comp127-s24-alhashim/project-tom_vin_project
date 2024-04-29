@@ -19,7 +19,7 @@ public class Connect4Game {
     
     private static int lastR; // to keep track for 2d array undo
     private static int lastC;
-    private static Boolean buttonClicked;
+    private static Boolean buttonClicked = false;
     
     private GraphicsText turnText;
 
@@ -60,6 +60,7 @@ public class Connect4Game {
         canvas.add(turnText);
 
         undo();
+        exitGame();
 
         canvas.onClick(event -> {
             if (gameOver) return;
@@ -85,6 +86,7 @@ public class Connect4Game {
             lastR = row;
             lastC = column;
             canvas.add(token);
+            buttonClicked = false;
 
             // ToDo: get the token behind the board
 
@@ -95,7 +97,7 @@ public class Connect4Game {
             // token falling speed
             while (token.getY()<120 + row * 100){
                 token.moveBy(0, 10);
-                canvas.pause(1.1);
+                canvas.pause(0.8);
                 canvas.draw();
             }
 
@@ -200,21 +202,19 @@ public class Connect4Game {
     public void undo(){
         Button undoButton = new Button("Undo");
         
-        undoButton.setPosition(650, 15);    
+        undoButton.setPosition(610, 15);
+
         undoButton.onClick(() -> {
-            if (buttonClicked == false){
-                canvas.remove(this.token);
-                grid[lastR][lastC] = null;
-                switchPlayer();
-                buttonClicked = true;
+            if (buttonClicked == true){
+                return;
             }
+            canvas.remove(this.token);
+            grid[lastR][lastC] = null;
+            switchPlayer();
+            buttonClicked = true;
+            System.out.println(buttonClicked);
         });
         canvas.add(undoButton);
-
-        // few things we need to do for this: button
-        // remove token (now that's instance var we can, it's just the one that's still selected)
-        // update grid[][] back
-        // change to back to the other player
     }
 
     public void restart(){
@@ -223,6 +223,13 @@ public class Connect4Game {
     }
 
     public void exitGame(){
+        Button exitButton = new Button("Exit");
+        exitButton.setPosition(680,15);
+        exitButton.onClick(() -> {
+            canvas.closeWindow();
+        });
+        canvas.add(exitButton);
+
         // code for exiting game before it's finished
     }
 
