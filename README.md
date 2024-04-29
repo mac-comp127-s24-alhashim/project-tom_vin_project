@@ -1,6 +1,5 @@
 # Connect4
-### Tom Andreae and Vin Leang
-### Highly Caffeinated
+### Tom Andreae and Vin Leang - Highly Caffeinated
 
 ### Short Description of the project:
 The project is making the classic Connect4 game on Java. It is the exact same as any typical Connect4 game, with this being a player versus player game.
