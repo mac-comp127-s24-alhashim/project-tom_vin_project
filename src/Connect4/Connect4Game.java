@@ -18,6 +18,8 @@ public class Connect4Game {
     private Token token;
     private final int ROWS = 6;
     private final int COLUMNS = 7;
+
+    private GameBoard gameBoard;
     
     private static int lastR; private static int lastC; // lastR = row of last token, lastC = column of last token;
     private static Boolean buttonClicked = false;
@@ -54,7 +56,7 @@ public class Connect4Game {
         p1 = new Player("Player 1", new Token(60, 60, "R"));
         p2 = new Player("Player 2", new Token(60, 60, "Y"));
         
-        GameBoard gameBoard = new GameBoard();
+        gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
         grid = new Token[ROWS][COLUMNS];
@@ -94,15 +96,16 @@ public class Connect4Game {
         // drop token after onclick
         
         int row = findEmptyRow(column);
-        if (row != -1) {
+        if (row<0){
+            return;
+        }
+        else {
             token = new Token(60, 60, currentPlayer.getToken().getColor());
             grid[row][column] = token;
             lastR = row; lastC = column;
             canvas.add(token);
+
             buttonClicked = false;
-
-            // ToDo: get the token behind the board
-
             
             // starting drop position
             token.setPosition(70 + column * 100, 20);
@@ -298,9 +301,11 @@ public class Connect4Game {
         restartButton.setPosition(5, 40);
         canvas.add(restartButton);
         restartButton.onClick(() -> {
+            // just clear canvas
+            // canvas.removeAll();
+
             canvas.closeWindow();
-            Connect4Game newGame = new Connect4Game();
-            newGame.startGame();
+            new Connect4Game();
         });
     }
 }
