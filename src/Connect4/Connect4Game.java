@@ -16,6 +16,11 @@ public class Connect4Game {
     private Token token;
     private final int ROWS = 6;
     private final int COLUMNS = 7;
+    
+    private static int lastR; // to keep track for 2d array undo
+    private static int lastC;
+    private static Boolean buttonClicked;
+    
     private GraphicsText turnText;
 
     public static void main(String[] args) {
@@ -54,6 +59,8 @@ public class Connect4Game {
         turnText.setFontStyle(FontStyle.BOLD);
         canvas.add(turnText);
 
+        undo();
+
         canvas.onClick(event -> {
             if (gameOver) return;
             int columnClicked = getColumnFromX(event.getPosition().getX());
@@ -75,19 +82,22 @@ public class Connect4Game {
         if (row != -1) {
             token = new Token(currentPlayer.getToken().getColor());
             grid[row][column] = token;
+            lastR = row;
+            lastC = column;
             canvas.add(token);
 
             // ToDo: get the token behind the board
 
+            
+            // starting drop position
             token.setPosition(70 + column * 100, 20);
             
+            // token falling speed
             while (token.getY()<120 + row * 100){
-                // token.
                 token.moveBy(0, 10);
-                canvas.pause(1);
+                canvas.pause(1.1);
                 canvas.draw();
             }
-            
 
             if (checkWin()) {
                 endGame(currentPlayer.getName() + " wins!");
@@ -188,6 +198,19 @@ public class Connect4Game {
     }
 
     public void undo(){
+        Button undoButton = new Button("Undo");
+        
+        undoButton.setPosition(650, 15);    
+        undoButton.onClick(() -> {
+            if (buttonClicked == false){
+                canvas.remove(this.token);
+                grid[lastR][lastC] = null;
+                switchPlayer();
+                buttonClicked = true;
+            }
+        });
+        canvas.add(undoButton);
+
         // few things we need to do for this: button
         // remove token (now that's instance var we can, it's just the one that's still selected)
         // update grid[][] back
