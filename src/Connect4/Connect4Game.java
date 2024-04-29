@@ -133,96 +133,178 @@ public class Connect4Game {
         return -1; 
     }
 
-    private boolean checkVerticalWin() {
-        // Vertical direction
-        for (int col = 0; col < COLUMNS; col++) {
-            for (int row = 0; row < ROWS - 3; row++) {
-                if (grid[row][col] != null && grid[row + 1][col] != null && grid[row + 2][col] != null && grid[row + 3][col] != null &&
-                    grid[row][col].getColor().equals(grid[row + 1][col].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row + 2][col].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row + 3][col].getColor())) {
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    // // updated checkWin, hopefully faster
     // private boolean checkVerticalWin() {
-    //     int vCount = 0;  // Count consecutive tokens of the same color
-    
-    //     for (int row = 0; row < ROWS; row++) {
-    //         if (grid[row][lastC] != null && grid[row][lastC].getColor().equals(token.getColor())) {
-    //             vCount++;
-    //             if (vCount == 4) {
-    //                 return true; 
+    //     // Vertical direction
+    //     for (int col = 0; col < COLUMNS; col++) {
+    //         for (int row = 0; row < ROWS - 3; row++) {
+    //             if (grid[row][col] != null && grid[row + 1][col] != null && grid[row + 2][col] != null && grid[row + 3][col] != null &&
+    //                 grid[row][col].getColor().equals(grid[row + 1][col].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row + 2][col].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row + 3][col].getColor())) {
+    //                     return true;
     //             }
-    //         } else {
-    //             vCount = 0; 
     //         }
     //     }
-    
     //     return false;
     // }
-    
 
-    private boolean checkHorizontalWin() {
-        // Horizontal direction
+    // updated checkWin, hopefully faster
+    private boolean checkVerticalWin() {
+        int vCount = 0;  // Count consecutive tokens of the same color
+    
         for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLUMNS - 3; col++) {
-                if (grid[row][col] != null && grid[row][col + 1] != null && grid[row][col + 2] != null && grid[row][col + 3] != null &&
-                    grid[row][col].getColor().equals(grid[row][col + 1].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row][col + 2].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row][col + 3].getColor())) {
-                    return true;
+            if (grid[row][lastC] != null && grid[row][lastC].getColor().equals(token.getColor())) {
+                vCount++;
+                if (vCount == 4) {
+                    return true; 
                 }
             }
+            else vCount = 0; 
         }
+    
         return false;
     }
+    
 
     // private boolean checkHorizontalWin() {
-    //     int hCount = 0;  // Count consecutive tokens of the same color
-    
-    //     for (int col = 0; col < COLUMNS; col++) {
-    //         if (grid[lastR][col] != null && grid[lastR][col].getColor().equals(token.getColor())) {
-    //             hCount++;
-    //             if (hCount == 4) {
+    //     // Horizontal direction
+    //     for (int row = 0; row < ROWS; row++) {
+    //         for (int col = 0; col < COLUMNS - 3; col++) {
+    //             if (grid[row][col] != null && grid[row][col + 1] != null && grid[row][col + 2] != null && grid[row][col + 3] != null &&
+    //                 grid[row][col].getColor().equals(grid[row][col + 1].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row][col + 2].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row][col + 3].getColor())) {
     //                 return true;
     //             }
-    //         } else {
-    //             hCount = 0;
     //         }
     //     }
     //     return false;
     // }
 
-    private boolean checkDiagonalWin() {
-        // Downward diagonal (\ direction)
-        for (int row = 0; row < ROWS - 3; row++) {
-            for (int col = 0; col < COLUMNS - 3; col++) {
-                if (grid[row][col] != null && grid[row + 1][col + 1] != null && grid[row + 2][col + 2] != null && grid[row + 3][col + 3] != null &&
-                    grid[row][col].getColor().equals(grid[row + 1][col + 1].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row + 2][col + 2].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row + 3][col + 3].getColor())) {
+    private boolean checkHorizontalWin() {
+        int hCount = 0;  // Count consecutive tokens of the same color
+    
+        for (int col = 0; col < COLUMNS; col++) {
+            if (grid[lastR][col] != null && grid[lastR][col].getColor().equals(token.getColor())) {
+                hCount++;
+                if (hCount == 4) {
                     return true;
                 }
             }
-        }
-        // Upward diagonal (/ direction)
-        for (int row = 3; row < ROWS; row++) {
-            for (int col = 0; col < COLUMNS - 3; col++) {
-                if (grid[row][col] != null && grid[row - 1][col + 1] != null && grid[row - 2][col + 2] != null && grid[row - 3][col + 3] != null &&
-                    grid[row][col].getColor().equals(grid[row - 1][col + 1].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row - 2][col + 2].getColor()) &&
-                    grid[row][col].getColor().equals(grid[row - 3][col + 3].getColor())) {
-                    return true;
-                }
-            }
+            else hCount = 0;
         }
         return false;
     }
+
+    // private boolean checkDiagonalWin() {
+    //     // Downward diagonal (\ direction)
+    //     for (int row = 0; row < ROWS - 3; row++) {
+    //         for (int col = 0; col < COLUMNS - 3; col++) {
+    //             if (grid[row][col] != null && grid[row + 1][col + 1] != null && grid[row + 2][col + 2] != null && grid[row + 3][col + 3] != null &&
+    //                 grid[row][col].getColor().equals(grid[row + 1][col + 1].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row + 2][col + 2].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row + 3][col + 3].getColor())) {
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     // Upward diagonal (/ direction)
+    //     for (int row = 3; row < ROWS; row++) {
+    //         for (int col = 0; col < COLUMNS - 3; col++) {
+    //             if (grid[row][col] != null && grid[row - 1][col + 1] != null && grid[row - 2][col + 2] != null && grid[row - 3][col + 3] != null &&
+    //                 grid[row][col].getColor().equals(grid[row - 1][col + 1].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row - 2][col + 2].getColor()) &&
+    //                 grid[row][col].getColor().equals(grid[row - 3][col + 3].getColor())) {
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
+
+
+    // for i < 3; i ++;
+    // find out where lastR + 1, lastC + 1 = lastR, lastC; then do lastR+2, lastC+2
+
+
+    private boolean checkDiagonalWin() {
+
+        // Check down-right diagonal (\ direction)
+        int row = lastR;
+        int col = lastC;
+        int dCount = 0;
+    
+        // Move upward-left to find the start of the downward diagonal
+        while (row >= 0 && col >= 0) {
+            if (grid[row][col] != null && grid[row][col].getColor().equals(token.getColor())) {
+                row--;
+                col--;
+            }
+            else break;
+        }
+    
+        // Count down-right from the start point
+        row++;
+        col++;
+        while (row < ROWS && col < COLUMNS) {
+            if (grid[row][col] != null && grid[row][col].getColor().equals(token.getColor())) {
+                dCount++;
+                if (dCount == 4) {
+                    return true;  // Four in a row found
+                }
+                row++;
+                col++;
+            }
+            else break;
+        }
+    
+        // Check up-right diagonal (/ direction)
+        row = lastR;
+        col = lastC;
+        dCount = 0;
+    
+        // Move down-left to find the start of the upward diagonal
+        while (row < ROWS && col >= 0) {
+            if (grid[row][col] != null && grid[row][col].getColor().equals(token.getColor())) {
+                row++;
+                col--;
+            }
+            else break;
+        }
+    
+        // Count up-right along the diagonal
+        row--;
+        col++;
+        while (row >= 0 && col < COLUMNS) {
+            if (grid[row][col] != null && grid[row][col].getColor().equals(color)) {
+                dCount++;
+                if (dCount == 4) {
+                    return true;  // Four in a row found
+                }
+                row--;
+                col++;
+            } else {
+                break;
+            }
+        }
+    
+        return false;
+    }
+
+    // private Boolean checkDiagonalWin(){
+    //     // Up-right diagonal (/)
+    //     int dCount = 0;
+    //     for (int i = 0; i < 4; i++){
+    //         if (lastR-i >= 0 && lastC+i <= 6 && grid[lastR-i][lastC+i]!=null && grid[lastR-i][lastC+i].getColor().equals(grid[lastR][lastC].getColor())){
+    //             dCount+=1;
+    //             if (dCount==4){
+    //                 return true;
+    //             }
+    //         }
+    //         else dCount = 0;
+    //     }
+    //     return false;
+    // }
     
 
     private boolean checkTie() {
