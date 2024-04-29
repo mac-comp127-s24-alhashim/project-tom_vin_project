@@ -293,12 +293,14 @@ public class Connect4Game {
         turnToken.setPosition(120,15);
         System.out.println("Game ended: " + message);
 
+        // restart pops up when you win
         Button restartButton = new Button("Restart?");
         restartButton.setPosition(5, 40);
         canvas.add(restartButton);
         restartButton.onClick(() -> {
             canvas.closeWindow();
-            new Connect4Game();
+            Connect4Game newGame = new Connect4Game();
+            newGame.startGame();
         });
     }
 }
