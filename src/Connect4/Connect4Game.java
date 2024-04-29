@@ -276,7 +276,7 @@ public class Connect4Game {
         row--;
         col++;
         while (row >= 0 && col < COLUMNS) {
-            if (grid[row][col] != null && grid[row][col].getColor().equals(color)) {
+            if (grid[row][col] != null && grid[row][col].getColor().equals(token.getColor())) {
                 dCount++;
                 if (dCount == 4) {
                     return true;  // Four in a row found
