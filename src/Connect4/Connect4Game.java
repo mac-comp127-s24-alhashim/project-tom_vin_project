@@ -35,11 +35,13 @@ public class Connect4Game {
     }
 
     private void setupStartScreen() {
+        // start screen text
         GraphicsText titleText = new GraphicsText("Connect 4", 275, 350);
         titleText.setFontSize(50);
         titleText.setFontStyle(FontStyle.BOLD);
         canvas.add(titleText);
 
+        // start screen play button
         Button playButton = new Button("Play Now!");
         playButton.setPosition(350, 375);
         playButton.onClick(() -> startGame());
@@ -58,16 +60,19 @@ public class Connect4Game {
         grid = new Token[ROWS][COLUMNS];
         
         currentPlayer = p1; 
+        // text at the top left showing player's turn
         turnText = new GraphicsText(currentPlayer.getName() + "'s Turn", 10, 30);
         turnText.setFontStyle(FontStyle.BOLD);
         canvas.add(turnText);
 
+        // color of token on top left
         turnToken = new Token(20, 20, currentPlayer.getToken().getColor());
         turnToken.setPosition(125, 15);
         canvas.add(turnToken);
 
-        undo();
-        exitGame();
+        
+        undo(); // undo button
+        exitGame(); // exit game button
 
         canvas.onClick(event -> {
             if (gameOver) return;
@@ -86,6 +91,8 @@ public class Connect4Game {
     }
 
     private void dropToken(int column) {
+        // drop token after onclick
+        
         int row = findEmptyRow(column);
         if (row != -1) {
             token = new Token(60, 60, currentPlayer.getToken().getColor());
