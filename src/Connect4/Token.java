@@ -30,9 +30,4 @@ public class Token extends GraphicsGroup {
     public String getColor() {
         return color;
     }
-
-    // can we just use setPosition?
-    public void setTokenPosition(double x, double y) {
-        this.setPosition(x, y);
-    }
 }

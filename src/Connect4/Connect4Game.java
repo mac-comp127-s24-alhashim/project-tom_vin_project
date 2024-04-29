@@ -45,7 +45,6 @@ public class Connect4Game {
         p1 = new Player("Player 1", new Token("R"));
         p2 = new Player("Player 2", new Token("Y"));
         
-        canvas = new CanvasWindow("Connect 4", 800, 800);
         GameBoard gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
@@ -62,12 +61,6 @@ public class Connect4Game {
                 dropToken(columnClicked);
             }
         });
-
-        // setupGame();
-    }
-    
-    private void setupGame() {
-        // should be in the constructor
     }
 
     private int getColumnFromX(double x) {
@@ -123,7 +116,7 @@ public class Connect4Game {
                     grid[row][col].getColor().equals(grid[row + 1][col].getColor()) &&
                     grid[row][col].getColor().equals(grid[row + 2][col].getColor()) &&
                     grid[row][col].getColor().equals(grid[row + 3][col].getColor())) {
-                    return true;
+                        return true;
                 }
             }
         }
