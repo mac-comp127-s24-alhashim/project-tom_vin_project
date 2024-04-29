@@ -9,9 +9,9 @@ public class Token extends GraphicsGroup {
     private String color;
     private Ellipse token;
 
-    public Token(String color) {
+    public Token(int width, int height, String color) {
         this.color = color;
-        token = new Ellipse(0, 0, 60, 60);
+        token = new Ellipse(0, 0, width, height);
         setColor(color);
         this.add(token);
     }

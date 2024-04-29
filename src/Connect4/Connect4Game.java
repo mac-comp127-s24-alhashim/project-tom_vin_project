@@ -1,7 +1,9 @@
 package Connect4;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.ui.Button;
 
@@ -17,11 +19,11 @@ public class Connect4Game {
     private final int ROWS = 6;
     private final int COLUMNS = 7;
     
-    private static int lastR; // to keep track for 2d array undo
-    private static int lastC;
+    private static int lastR; private static int lastC; // to keep track for 2d array undo 
     private static Boolean buttonClicked = false;
     
     private GraphicsText turnText;
+    private Token turnToken;
 
     public static void main(String[] args) {
         new Connect4Game();
@@ -47,17 +49,22 @@ public class Connect4Game {
     private void startGame() {
         canvas.removeAll();
 
-        p1 = new Player("Player 1", new Token("R"));
-        p2 = new Player("Player 2", new Token("Y"));
+        p1 = new Player("Player 1", new Token(60, 60, "R"));
+        p2 = new Player("Player 2", new Token(60, 60, "Y"));
         
         GameBoard gameBoard = new GameBoard();
         canvas.add(gameBoard);
 
         grid = new Token[ROWS][COLUMNS];
+        
         currentPlayer = p1; 
-        turnText = new GraphicsText(currentPlayer.getName() + " 's Turn", 10, 30);
+        turnText = new GraphicsText(currentPlayer.getName() + "'s Turn", 10, 30);
         turnText.setFontStyle(FontStyle.BOLD);
         canvas.add(turnText);
+
+        turnToken = new Token(20, 20, currentPlayer.getToken().getColor());
+        turnToken.setPosition(125, 15);
+        canvas.add(turnToken);
 
         undo();
         exitGame();
@@ -81,10 +88,9 @@ public class Connect4Game {
     private void dropToken(int column) {
         int row = findEmptyRow(column);
         if (row != -1) {
-            token = new Token(currentPlayer.getToken().getColor());
+            token = new Token(60, 60, currentPlayer.getToken().getColor());
             grid[row][column] = token;
-            lastR = row;
-            lastC = column;
+            lastR = row; lastC = column;
             canvas.add(token);
             buttonClicked = false;
 
@@ -197,6 +203,7 @@ public class Connect4Game {
     public void switchPlayer() {
         currentPlayer = (currentPlayer == p1) ? p2 : p1;
         turnText.setText(currentPlayer.getName() + "'s Turn");
+        turnToken.setColor(currentPlayer.getToken().getColor());
     }
 
     public void undo(){
@@ -205,21 +212,15 @@ public class Connect4Game {
         undoButton.setPosition(610, 15);
 
         undoButton.onClick(() -> {
-            if (buttonClicked == true){
+            if (buttonClicked == true || gameOver == true){
                 return;
             }
             canvas.remove(this.token);
             grid[lastR][lastC] = null;
             switchPlayer();
             buttonClicked = true;
-            System.out.println(buttonClicked);
         });
         canvas.add(undoButton);
-    }
-
-    public void restart(){
-        // code for restart game
-        // need a button too
     }
 
     public void exitGame(){
@@ -229,13 +230,12 @@ public class Connect4Game {
             canvas.closeWindow();
         });
         canvas.add(exitButton);
-
-        // code for exiting game before it's finished
     }
 
     public void endGame(String message) {
         gameOver = true;
         turnText.setText(message);
+        turnToken.setPosition(120,15);
         System.out.println("Game ended: " + message);
     }
 }

@@ -15,6 +15,6 @@ public class Player {
     }
 
     public Token getToken() {
-        return new Token(token.getColor());
+        return new Token(60, 60, token.getColor());
     }
 }
