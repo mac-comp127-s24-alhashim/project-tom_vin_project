@@ -72,11 +72,12 @@ public class Connect4Game {
         
         undo(); // undo button
         exitGame(); // exit game button
-        gameOver = false; // reset after restart
+    
 
         canvas.onClick(event -> {
             if (gameOver) return;
             int columnClicked = getColumnFromX(event.getPosition().getX());
+            System.out.println("keep going");
             if (columnClicked != -1) {
                 dropToken(columnClicked);
             }
@@ -296,8 +297,8 @@ public class Connect4Game {
             // just clear canvas
             // canvas.removeAll();
 
-            canvas.removeAll();
-            startGame();
+            canvas.closeWindow();
+            new Connect4Game();
         });
     }
 }
