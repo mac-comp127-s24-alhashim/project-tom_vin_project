@@ -11,8 +11,8 @@
 
 ## How to Run:
 - Clone repository and copy into VS code.
-- Locate src file and open Connect4 file then open Connect4Game.java, then run.
-- Gameplay is just like classic Connect4, click on where you'd like to make your move, then change turns and continue until win or tie.
+- Locate src file, open Connect4 folder, open 'Connect4Game.java', then run code.
+- Gameplay is just like classic Connect4. Press start button, then Player 1 clicks where they want to play their turn, then Player 2, and repeat until winner or tie. Can either restart or exit game.
 
 ## Limitations:
 - The token dropping animation happens on top of the board, rather than creating the illusions that it is inside the board.
