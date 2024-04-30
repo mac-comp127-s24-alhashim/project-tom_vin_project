@@ -304,8 +304,8 @@ public class Connect4Game {
             // just clear canvas
             // canvas.removeAll();
 
-            canvas.closeWindow();
-            new Connect4Game();
+            canvas.removeAll();
+            startGame();
         });
     }
 }
