@@ -1,9 +1,7 @@
 package Connect4;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.FontStyle;
-import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.ui.Button;
 
@@ -171,12 +169,6 @@ public class Connect4Game {
         }
         return false;
     }
-
-  
-
-    // for i < 3; i ++;
-    // find out where lastR + 1, lastC + 1 = lastR, lastC; then do lastR+2, lastC+2
-
 
     private boolean checkDiagonalWin() {
 
