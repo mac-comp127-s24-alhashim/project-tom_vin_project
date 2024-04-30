@@ -9,6 +9,7 @@
 
 ### How to Run:
 - Clone repository and copy into VS code.
+- Locate src file and open Connect4 file then open Connect4Game.java, then run.
 
 ### Limitations:
 - The token dropping animation happens on top of the board, rather than creating the illusions that it is inside the board.
@@ -18,8 +19,12 @@
 - Prior homeworks and in-class activities. 
 
 ### Main Windows of the Software:
-- Start Screen: 
-- Game Screen: 
+- Start Screen:
+<img width="702" alt="Screenshot 2024-04-30 at 5 45 00 PM" src="https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/assets/96271963/e0602c1d-137c-4343-aa42-70deacc949a1">
+
+- Game Screen:
+<img width="679" alt="Screenshot 2024-04-30 at 5 45 25 PM" src="https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/assets/96271963/93632e11-839b-405d-857e-0d795a7e8dfe">
+
 
 
 
