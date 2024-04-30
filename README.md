@@ -3,7 +3,9 @@
 
 
 ### Requirements:
-- Java Version 17 or higher, edu.macalester.graphics library, VS code.
+- Java Version 17 or higher.
+- edu.macalester.graphics library.
+- VS code.
 
 ### How to Run:
 - Clone repository and copy into VS code.
@@ -16,7 +18,7 @@
 - Prior homeworks and in-class activities. 
 
 ### Main Windows of the Software:
-- Start Screen: <img width="801" alt="Screenshot 2024-04-29 at 11 47 25 AM" src="https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/assets/96271963/0b32323a-f102-4fc3-8e1a-4d3405fd8cc5">
+- Start Screen: 
 - Game Screen: 
 
 
