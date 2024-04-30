@@ -69,10 +69,10 @@ public class Connect4Game {
         turnToken = new Token(20, 20, currentPlayer.getToken().getColor());
         turnToken.setPosition(125, 15);
         canvas.add(turnToken);
-
         
         undo(); // undo button
         exitGame(); // exit game button
+        gameOver = false; // reset after restart
 
         canvas.onClick(event -> {
             if (gameOver) return;
