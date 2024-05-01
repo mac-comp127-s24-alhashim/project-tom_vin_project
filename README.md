@@ -1,9 +1,7 @@
 # ![Connect_4_game_logo](https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/assets/96271963/c74c15d9-08e7-4bca-8269-37c581d1d771)
 
-### Tom Andreae and Vin Leang - Highly Caffeinated
-
 ## Introduction
-This repository contains the classic Connect4 game implemented in Java. Developed by Tom Andreae and Vin Leang, this project replicates the classic tabletop game digitally.
+This repository contains the classic Connect4 game implemented in Java. Developed by **Tom Andreae** and **Vin Leang**, this project replicates the classic tabletop game digitally.
 
 ## Requirements:
 To run this game, you will need:
