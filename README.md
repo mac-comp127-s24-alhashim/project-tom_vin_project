@@ -1,25 +1,34 @@
 # ![Connect_4_game_logo](https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/assets/96271963/c74c15d9-08e7-4bca-8269-37c581d1d771)
 
-## Tom Andreae and Vin Leang - Highly Caffeinated
+### Tom Andreae and Vin Leang - Highly Caffeinated
 
-
+## Introduction
+This repository contains the classic Connect4 game implemented in Java. Developed by Tom Andreae and Vin Leang, this project replicates the classic tabletop game digitally.
 
 ## Requirements:
-- Java Version 17 or higher.
-- edu.macalester.graphics library.
-- VS code.
+To run this game, you will need:
+- **Java Version 17** or higher.
+- **edu.macalester.graphics** library, for handling graphical components.
+- **Visual Studio Code** or any Java-compatible IDE.
 
-## How to Run:
-- Clone repository and copy into VS code.
-- Locate src file, open Connect4 folder, open 'Connect4Game.java', then run code.
-- Gameplay is just like classic Connect4. Press start button, then Player 1 clicks where they want to play their turn, then Player 2, and repeat until winner or tie. Can either restart or exit game.
+## Installation and Running the Game
+Follow these steps to get the game running on your machine:
+1. Clone the repository.
+2. Open the cloned reposityory in Visual Studio Code.
+3. Navigate to the `src/Connect4` directory.
+4. Open `Connect4Game.java` and run the code via your IDE.
+
+## How to Play
+- The gameplay follows the traditional Connect4 rules where two players take turns dropping colored tokens into a seven-column, six-row grid.
+- The first player to form a horizontal, vertical, or diagonal line of four of their own tokens wins.
+- Players can stat a new game or exit after a game concludes.
 
 ## Limitations:
-- The token dropping animation happens on top of the board, rather than creating the illusions that it is inside the board.
-- No AI implementation, can only do player versus player.
+- The token animation does not create the illusion of falling inside the board.
+- Currently, the game supports only a player-versus-player mode without AI.
 
 ## Resources:
-- Prior homeworks and in-class activities. 
+- This project builds upon knowledge acquired from previous homeworks and class activities from the Macalester College COMP 127 course.
 
 ## Main Windows of the Software:
 ### Start Screen:
@@ -41,7 +50,7 @@ It seemed doable and fun. It would be easy to show to prospective employers in t
 Actual Connect4.
 
 ## Rough implementation and responsibility plan (what needs to be accomplished, who will do what when):
-The plan is to find assets or make the tokens and the grid. For coding, we’ll need to map out the grid and have the program recognize when a player has won. There should be a play again button and a score that is kept every time a player has won. We’ll share the responsibilities equally.
+The plan is to find assets or make the tokens and the grid. For coding, we’ll need to map out the grid and have the program recognize when a player has won. There should be a restart, undo, and exit button. We’ll share the responsibilities equally.
 
 ## Sketch/Illustration: 
 [Connect4 Sketch.pdf](https://github.com/mac-comp127-s24-alhashim/project-tom_vin_project/files/15151759/Connect4.Sketch.pdf)
