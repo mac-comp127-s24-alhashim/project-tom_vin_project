@@ -23,6 +23,8 @@ Follow these steps to get the game running on your machine:
 
 ## Limitations:
 - The token animation does not create the illusion of falling inside the board.
+- Depending on the computer you run it on, the token animation might seem slow.
+- Restart doesn't show on the same canvas.
 - Currently, the game supports only a player-versus-player mode without AI.
 
 ## Resources:
