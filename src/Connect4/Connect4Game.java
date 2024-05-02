@@ -77,7 +77,6 @@ public class Connect4Game {
         canvas.onClick(event -> {
             if (gameOver) return;
             int columnClicked = getColumnFromX(event.getPosition().getX());
-            System.out.println("keep going");
             if (columnClicked != -1) {
                 dropToken(columnClicked);
             }
